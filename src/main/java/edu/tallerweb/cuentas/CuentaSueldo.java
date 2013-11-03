@@ -6,30 +6,33 @@ package edu.tallerweb.cuentas;
  * cuenta del que se quiere extraer, la operación se debe efectuar
  * correctamente.
  */
-public class CuentaSueldo {
+public class CuentaSueldo extends AbstractCuenta {
 
 	/**
-	 * No hay reglas adicionales para el depósito
-	 * @param monto a depositar
-	 */
-	public void depositar(final Double monto) {
-		throw new RuntimeException("No implementado aún");
-	}
+     * No hay reglas adicionales para el dep�sito
+     * @param monto a depositar
+     */
+    @Override
+	public void depositar(final Double monto) throws CuentaBancariaException {
+    	if(monto < 0) {
+			 throw new CuentaBancariaException("No se aceptan n�meros negativos");
+		 }
+		 this.saldo += monto;
+      }
 
-	/**
-	 * No hay reglas adicionales para la extracción
-	 * @param monto a extraer
-	 */
-	public void extraer(final Double monto) {
-		throw new RuntimeException("No implementado aún");
-	}
 
-	/**
-	 * Permite saber el saldo de la cuenta
-	 * @return el saldo de la cuenta
-	 */
-	public Double getSaldo() {
-		throw new RuntimeException("No implementado aún");
-	}
+    /**
+     * No hay reglas adicionales para la extracci�n
+     * @param monto a extraer
+     */
+    @Override
+	public void extraer(final Double monto) throws CuentaBancariaException {
+    	if(monto > this.saldo) {
+			throw new CuentaBancariaException("Monto de extraccion mayor a Saldo de cuenta ");
+	  }
+    	 this.saldo -= monto;
+    }
+
+
 
 }
