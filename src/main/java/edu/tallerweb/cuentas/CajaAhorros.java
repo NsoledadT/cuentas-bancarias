@@ -14,9 +14,7 @@ public class CajaAhorros extends AbstractCuenta {
      */
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
-    	if(monto < 0) {
-			 throw new CuentaBancariaException("No se aceptan números negativos");
-		 }
+    	NumerosNegativosException(monto);
 		 this.saldo += monto;
     }
 
@@ -27,6 +25,7 @@ public class CajaAhorros extends AbstractCuenta {
      */
     @Override
 	public void extraer(final Double monto) throws CuentaBancariaException  {
+    	NumerosNegativosException(monto);
     	Double montoAdicional;
     	if(contador == 5) {
 			montoAdicional = monto + 6;

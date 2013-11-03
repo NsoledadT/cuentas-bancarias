@@ -81,25 +81,25 @@ public class CuentaTests {
 					2000.0, cuenta.getSaldo(), 0.0);
 		 cuenta.extraer(3000.0);
 		 Assert.assertEquals("al extraer $ 3000.0 en una cuenta de 2000.0 con un decubiertoTotal de 1500, tiene $ -500.0",
-					-450.0, cuenta.getDescubierto(), 0.0);
+					450.0, cuenta.getDescubierto(), 0.0);
 		 Assert.assertEquals("al extraer $ 3000.0 en una cuenta de 2000.0 con un decubiertoTotal de 1500, tiene $ -500.0",
 					0.0, cuenta.getSaldo(), 0.0);
 		 cuenta.depositar(500.0);
 		 Assert.assertEquals("al depositar 500.0 en una cuenta con descubierto de -450.0" ,
-					-1500.0, cuenta.getDescubierto(), 0.0);
+					1500.0, cuenta.getDescubierto(), 0.0);
 		 Assert.assertEquals("al depositar 500.0 en una cuenta con descubierto de -450.0" ,
 					50.0, cuenta.getSaldo(), 0.0);
 		 cuenta.extraer(300.0);
 		 Assert.assertEquals("al extrae 300.0 en una cuenta con saldo 50.0" ,
 					0.0, cuenta.getSaldo(), 0.0);
 		 Assert.assertEquals("al extrae 300.0 en una cuenta con saldo 50.0" ,
-					-1237.5, cuenta.getDescubierto(), 0.0);
+					1237.5, cuenta.getDescubierto(), 0.0);
 		 cuenta.extraer(100.0);
 		 Assert.assertEquals("al extrae 100.0 en una cuenta con decubierto de -1237.5" ,
-					-1132.5, cuenta.getDescubierto(), 0.0);
+					1132.5, cuenta.getDescubierto(), 0.0);
 		 cuenta.extraer(1000.0);
-		 Assert.assertEquals("al extrae 1000.0 en una cuenta con decubierto de -1132.5" ,
-					-82.5, cuenta.getDescubierto(), 0.0);
+		 Assert.assertEquals("al extrae 1000.0 en una cuenta con decubierto de 1132.5" ,
+					82.5, cuenta.getDescubierto(), 0.0);
 
     }
 

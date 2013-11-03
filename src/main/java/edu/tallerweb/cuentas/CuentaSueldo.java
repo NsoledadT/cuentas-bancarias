@@ -14,9 +14,7 @@ public class CuentaSueldo extends AbstractCuenta {
      */
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
-    	if(monto < 0) {
-			 throw new CuentaBancariaException("No se aceptan números negativos");
-		 }
+    	NumerosNegativosException(monto);
 		 this.saldo += monto;
       }
 
@@ -27,6 +25,7 @@ public class CuentaSueldo extends AbstractCuenta {
      */
     @Override
 	public void extraer(final Double monto) throws CuentaBancariaException {
+    	NumerosNegativosException(monto);
     	if(monto > this.saldo) {
 			throw new CuentaBancariaException("Monto de extraccion mayor a Saldo de cuenta ");
 	  }

@@ -21,11 +21,14 @@ package edu.tallerweb.cuentas;
 	         * @return el saldo de la cuenta
 	         */
 	        public Double getSaldo()  throws CuentaBancariaException  {
-	        	if(this.saldo == null) {
-	        	    throw new CuentaBancariaException("Todavían no se han realizado depositos");
-	   		    }
 	        	return this.saldo;
 	        }
+
+	        public void NumerosNegativosException(Double monto) {
+	        	if(monto < 0) {
+	   			 throw new CuentaBancariaException("No se aceptan números negativos");
+	        	}
+	   		  }
 
 }
 
