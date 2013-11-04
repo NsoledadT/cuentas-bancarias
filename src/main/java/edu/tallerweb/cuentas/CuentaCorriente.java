@@ -39,16 +39,18 @@ public class CuentaCorriente extends AbstractCuenta {
      */
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
-      NumerosNegativosException(monto);
+    	Double calculo;
+    	NumerosNegativosException(monto);
   	  if(this.descubierto == this.descubiertoTotal) {
   		this.saldo += monto;
   	  }
   		  else {
-  			 if(monto < this.descubierto) {
+  			  calculo = this.descubiertoTotal - this.descubierto;
+  			 if(monto < calculo) {
   				throw new CuentaBancariaException("El Monto ingresado insuficiente");
   			 }
-  			  this.saldo += monto - this.descubierto;
-  			  this.descubierto = descubiertoTotal;
+  			  this.saldo += monto - calculo;
+  			  this.descubierto = this.descubiertoTotal;
             }
 	 }
 
@@ -62,13 +64,13 @@ public class CuentaCorriente extends AbstractCuenta {
     @Override
 	public void extraer(final Double monto)  throws CuentaBancariaException {
     	NumerosNegativosException(monto);
-    	 Double descubiertoFuncion;
+    	 Double extraccion;
     	  if(this.saldo < monto) {
-    		    descubiertoFuncion =(monto - this.saldo) * 1.05 ;
-    		   if(descubiertoFuncion > this.descubierto) {
+    		    extraccion =(monto - this.saldo) * 1.05 ;
+    		   if(extraccion > this.descubierto) {
     			   throw new CuentaBancariaException("No se puede realizar la operación");
     		   }
-    		   this.descubierto -= descubiertoFuncion;
+    		   this.descubierto -= extraccion;
     		   this.saldo = 0.0;
 
     	  }
