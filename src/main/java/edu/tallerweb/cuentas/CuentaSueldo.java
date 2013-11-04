@@ -7,6 +7,7 @@ package edu.tallerweb.cuentas;
  * correctamente.
  */
 public class CuentaSueldo extends AbstractCuenta {
+	private Double saldo = 0.0;
 
 	/**
      * No hay reglas adicionales para el depósito
@@ -14,7 +15,7 @@ public class CuentaSueldo extends AbstractCuenta {
      */
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
-    	NumerosNegativosException(monto);
+    	numerosNegativosException(monto);
 		 this.saldo += monto;
       }
 
@@ -25,13 +26,19 @@ public class CuentaSueldo extends AbstractCuenta {
      */
     @Override
 	public void extraer(final Double monto) throws CuentaBancariaException {
-    	NumerosNegativosException(monto);
-    	if(monto > this.saldo) {
+    	numerosNegativosException(monto);
+    	if (monto > this.saldo) {
 			throw new CuentaBancariaException("Monto de extraccion mayor a Saldo de cuenta ");
 	  }
     	 this.saldo -= monto;
     }
 
-
-
+    /**
+     * Permite saber el saldo de la cuenta
+     * @return el saldo de la cuenta
+     */
+	public Double getSaldo()  throws CuentaBancariaException  {
+    	return this.saldo;
+    }
 }
+

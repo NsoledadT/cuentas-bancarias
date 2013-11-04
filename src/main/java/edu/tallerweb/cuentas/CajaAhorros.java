@@ -7,6 +7,11 @@ package edu.tallerweb.cuentas;
  */
 public class CajaAhorros extends AbstractCuenta {
 	private int contador;
+	private Double saldo = 0.0;
+	private final Double adicional = 6.0;
+	private final int baseContador = 5;
+	private final int incremento = 1;
+
 
 	 /**
      * No hay reglas adicionales para el depósito
@@ -14,7 +19,7 @@ public class CajaAhorros extends AbstractCuenta {
      */
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
-    	NumerosNegativosException(monto);
+    	numerosNegativosException(monto);
 		 this.saldo += monto;
     }
 
@@ -25,23 +30,22 @@ public class CajaAhorros extends AbstractCuenta {
      */
     @Override
 	public void extraer(final Double monto) throws CuentaBancariaException  {
-    	NumerosNegativosException(monto);
+
+    	numerosNegativosException(monto);
     	Double montoAdicional;
-    	if(contador == 5) {
-			montoAdicional = monto + 6;
-		 	   if(montoAdicional > this.saldo) {
+    	if (this.contador == this.baseContador) {
+			montoAdicional = monto + adicional;
+		 	   if (montoAdicional > this.saldo) {
 				  throw new CuentaBancariaException(mensaje());
 			   }
 			   this.saldo -= montoAdicional;
 
-		 }
-
-		else {
-			    if(monto > this.saldo) {
+	    } else {
+			    if (monto > this.saldo) {
 				  throw new CuentaBancariaException(mensaje());
 			    }
 			    this.saldo -= monto;
-			    this.contador += 1;
+			    this.contador += this.incremento;
 		     }
 		}
 
@@ -52,6 +56,12 @@ public class CajaAhorros extends AbstractCuenta {
      private String mensaje() {
  	   return "Se intenta extraer más de lo que se tiene en el saldo";
  	  }
+
+     /**
+      * Permite saber el saldo de la cuenta
+      * @return el saldo de la cuenta
+      */
+     public Double getSaldo()  throws CuentaBancariaException  {
+     	return this.saldo;
+     }
  }
-
-

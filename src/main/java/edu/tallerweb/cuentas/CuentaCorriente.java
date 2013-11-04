@@ -19,13 +19,15 @@ package edu.tallerweb.cuentas;
 public class CuentaCorriente extends AbstractCuenta {
 	private final Double descubiertoTotal;
 	private Double descubierto;
+	private Double saldo = 0.0;
+	private final Double comision = 1.05;
 	/**
      * Toda cuenta corriente se inicia con un límite total
      * para el descubierto.
      * @param descubiertoTotal
      */
     public CuentaCorriente(final Double descubiertoTotal) throws CuentaBancariaException {
-    	NumerosNegativosException(descubiertoTotal);
+    	numerosNegativosException(descubiertoTotal);
 		this.descubiertoTotal = descubiertoTotal;
 		this.descubierto = descubiertoTotal;
 	}
@@ -40,16 +42,14 @@ public class CuentaCorriente extends AbstractCuenta {
     @Override
 	public void depositar(final Double monto) throws CuentaBancariaException {
     	Double calculo;
-    	NumerosNegativosException(monto);
-  	  if(this.descubierto == this.descubiertoTotal) {
+    	numerosNegativosException(monto);
+  	  if (this.descubierto == this.descubiertoTotal) {
   		this.saldo += monto;
-  	  }
-  		  else {
+  	  } else {
   			  calculo = this.descubiertoTotal - this.descubierto;
-  			 if(monto < calculo) {
+  			 if (monto < calculo) {
                 this.descubierto += monto;
-  			 }
-  			 else {
+  			 } else {
   			  this.saldo += monto - calculo;
   			  this.descubierto = this.descubiertoTotal;
   			  }
@@ -65,18 +65,17 @@ public class CuentaCorriente extends AbstractCuenta {
      */
     @Override
 	public void extraer(final Double monto)  throws CuentaBancariaException {
-    	NumerosNegativosException(monto);
+    	numerosNegativosException(monto);
     	 Double extraccion;
-    	  if(this.saldo < monto) {
-    		    extraccion =(monto - this.saldo) * 1.05 ;
-    		   if(extraccion > this.descubierto) {
+    	  if (this.saldo < monto) {
+    		    extraccion = (monto - this.saldo) * this.comision;
+    		   if (extraccion > this.descubierto) {
     			   throw new CuentaBancariaException("No se puede realizar la operación");
     		   }
     		   this.descubierto -= extraccion;
     		   this.saldo = 0.0;
 
-    	  }
-    	  else {
+    	  } else {
     		  this.saldo -= monto;
     	 }
     }
@@ -87,6 +86,14 @@ public class CuentaCorriente extends AbstractCuenta {
      */
     public Double getDescubierto() {
            return this.descubierto;
+    }
+
+    /**
+     * Permite saber el saldo de la cuenta
+     * @return el saldo de la cuenta
+     */
+    public Double getSaldo()  throws CuentaBancariaException  {
+    	return this.saldo;
     }
 
 }

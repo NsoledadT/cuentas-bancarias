@@ -1,8 +1,14 @@
 package edu.tallerweb.cuentas;
 
+/**
+ * Modela el concepto de Cuenta. Esta clase abstracta sirve
+ * como base para una posible jerarquía (si fuese necesaria)
+ *
+ * Es probable que la tarea se facilite otorgando una imple-
+ * mentación a los métodos proporcionados.
+ */
 
-	public abstract class AbstractCuenta {
-		protected Double saldo = 0.0;
+  public abstract class AbstractCuenta {
 
 	        /**
 	         * Agrega a la cuenta el monto determinado
@@ -16,16 +22,9 @@ package edu.tallerweb.cuentas;
 	         */
 	        public abstract void extraer(final Double monto);
 
-	        /**
-	         * Permite saber el saldo de la cuenta
-	         * @return el saldo de la cuenta
-	         */
-	        public Double getSaldo()  throws CuentaBancariaException  {
-	        	return this.saldo;
-	        }
 
-	        public void NumerosNegativosException(Double monto) {
-	        	if(monto < 0) {
+	        public void numerosNegativosException(final Double monto) {
+	        	if (monto < 0) {
 	   			 throw new CuentaBancariaException("No se aceptan números negativos");
 	        	}
 	   		  }
