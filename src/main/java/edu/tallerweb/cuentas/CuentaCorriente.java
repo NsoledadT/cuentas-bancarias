@@ -26,7 +26,7 @@ public class CuentaCorriente extends AbstractCuenta {
      * para el descubierto.
      * @param descubiertoTotal
      */
-    public CuentaCorriente(final Double descubiertoTotal) throws CuentaBancariaException {
+    public CuentaCorriente(final Double descubiertoTotal) {
     	numerosNegativosException(descubiertoTotal);
 		this.descubiertoTotal = descubiertoTotal;
 		this.descubierto = descubiertoTotal;
@@ -40,7 +40,7 @@ public class CuentaCorriente extends AbstractCuenta {
      * @param monto a depositar
      */
     @Override
-	public void depositar(final Double monto) throws CuentaBancariaException {
+	public void depositar(final Double monto) {
     	Double calculo;
     	numerosNegativosException(monto);
   	  if (this.descubierto == this.descubiertoTotal) {
