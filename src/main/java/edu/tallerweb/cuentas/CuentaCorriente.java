@@ -47,10 +47,12 @@ public class CuentaCorriente extends AbstractCuenta {
   		  else {
   			  calculo = this.descubiertoTotal - this.descubierto;
   			 if(monto < calculo) {
-  				throw new CuentaBancariaException("El Monto ingresado insuficiente");
+                this.descubierto += monto;
   			 }
+  			 else {
   			  this.saldo += monto - calculo;
   			  this.descubierto = this.descubiertoTotal;
+  			  }
             }
 	 }
 

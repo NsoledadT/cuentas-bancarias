@@ -82,7 +82,12 @@ public class CuentaTests {
 		 cuenta.extraer(3000.0);
 		 Assert.assertEquals("al extraer $ 3000.0 en una cuenta de 2000.0, tiene $ 450.0",
 					450.0, cuenta.getDescubierto(), 0.0);
-		 cuenta.depositar(1050.0);
+		 cuenta.depositar(600.0);
+		 Assert.assertEquals("al extraer $ 3000.0 en una cuenta de 2000.0, tiene $ 450.0",
+					1050.0, cuenta.getDescubierto(), 0.0);
+		 Assert.assertEquals("al extraer $ 3000.0 en una cuenta de 2000.0, tiene $ 450.0",
+					0.0, cuenta.getSaldo(), 0.0);
+
 
     }
 
