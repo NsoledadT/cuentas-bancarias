@@ -64,7 +64,7 @@ public class CuentaCorriente extends AbstractCuenta {
      * @param monto a extraer
      */
     @Override
-	public void extraer(final Double monto)  throws CuentaBancariaException {
+	public void extraer(final Double monto) {
     	numerosNegativosException(monto);
     	 Double extraccion;
     	  if (this.saldo < monto) {
@@ -92,7 +92,7 @@ public class CuentaCorriente extends AbstractCuenta {
      * Permite saber el saldo de la cuenta
      * @return el saldo de la cuenta
      */
-    public Double getSaldo()  throws CuentaBancariaException  {
+    public Double getSaldo() {
     	return this.saldo;
     }
 

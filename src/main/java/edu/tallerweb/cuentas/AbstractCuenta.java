@@ -25,7 +25,7 @@ package edu.tallerweb.cuentas;
 
 	        public void numerosNegativosException(final Double monto) {
 	        	if (monto < 0) {
-	   			 throw new CuentaBancariaException("No se aceptan números negativos");
+	        		 throw new CuentaBancariaException("No se aceptan números negativos");
 	        	}
 	   		  }
 

@@ -18,7 +18,7 @@ public class CajaAhorros extends AbstractCuenta {
      * @param monto a depositar
      */
     @Override
-	public void depositar(final Double monto) throws CuentaBancariaException {
+	public void depositar(final Double monto) {
     	numerosNegativosException(monto);
 		 this.saldo += monto;
     }
@@ -29,20 +29,20 @@ public class CajaAhorros extends AbstractCuenta {
      * @param monto a extraer
      */
     @Override
-	public void extraer(final Double monto) throws CuentaBancariaException  {
+	public void extraer(final Double monto) {
 
     	numerosNegativosException(monto);
     	Double montoAdicional;
     	if (this.contador == this.baseContador) {
 			montoAdicional = monto + adicional;
 		 	   if (montoAdicional > this.saldo) {
-				  throw new CuentaBancariaException(mensaje());
+		 		  throw new CuentaBancariaException(mensaje());
 			   }
 			   this.saldo -= montoAdicional;
 
 	    } else {
 			    if (monto > this.saldo) {
-				  throw new CuentaBancariaException(mensaje());
+			    	throw new CuentaBancariaException(mensaje());
 			    }
 			    this.saldo -= monto;
 			    this.contador += this.incremento;
@@ -61,7 +61,7 @@ public class CajaAhorros extends AbstractCuenta {
       * Permite saber el saldo de la cuenta
       * @return el saldo de la cuenta
       */
-     public Double getSaldo()  throws CuentaBancariaException  {
+     public Double getSaldo() {
      	return this.saldo;
      }
  }

@@ -14,7 +14,7 @@ public class CuentaSueldo extends AbstractCuenta {
      * @param monto a depositar
      */
     @Override
-	public void depositar(final Double monto) throws CuentaBancariaException {
+	public void depositar(final Double monto) {
     	numerosNegativosException(monto);
 		 this.saldo += monto;
       }
@@ -25,10 +25,10 @@ public class CuentaSueldo extends AbstractCuenta {
      * @param monto a extraer
      */
     @Override
-	public void extraer(final Double monto) throws CuentaBancariaException {
+	public void extraer(final Double monto) {
     	numerosNegativosException(monto);
     	if (monto > this.saldo) {
-			throw new CuentaBancariaException("Monto de extraccion mayor a Saldo de cuenta ");
+    		 throw new CuentaBancariaException("Monto de extraccion mayor a Saldo de cuenta");
 	  }
     	 this.saldo -= monto;
     }
@@ -37,7 +37,7 @@ public class CuentaSueldo extends AbstractCuenta {
      * Permite saber el saldo de la cuenta
      * @return el saldo de la cuenta
      */
-	public Double getSaldo()  throws CuentaBancariaException  {
+	public Double getSaldo() {
     	return this.saldo;
     }
 }
